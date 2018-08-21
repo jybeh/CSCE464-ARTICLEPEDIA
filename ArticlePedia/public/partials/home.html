@@ -1,0 +1,57 @@
+<div class="container">
+<h1>ArticlePedia Home Page</h1> 
+<br />
+<br />
+<table class="table table-bordered table-striped sortable">
+    <thead>
+        <tr>
+            <th scope="col" class="col-md-1">Manage</th>
+            <th scope="col" class="col-md-4">Title</th>
+            <th scope="col" class="col-md-1">Votes</th>
+            <th scope="col" class="col-md-3">Added by</th>
+            <th scope="col" class="col-md-1">Comments</th>
+            <th scope="col" class="col-md-1"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat='article in articles'>
+            <td>
+                <a class="btn btn-default glyphicon glyphicon-thumbs-up" ng-click="upVote(article._id, article.votes)"></a>
+                <a class="btn btn-default glyphicon glyphicon-thumbs-down" ng-click="downVote(article._id, article.votes)"></a>
+            </td>
+            <td><a href="{{article.URL}}">{{article.title}}</a></td>
+            <td>{{article.votes}}</td>
+            <td>{{article.user}}</td>
+            <td>
+                <a class="btn btn-default glyphicon glyphicon-comment" href="/#/viewcomments/{{article._id}}"></a>
+            </td>
+            <td>
+                <button class="btn btn-default glyphicon glyphicon-trash" ng-click="delete(article._id)"></button>
+            </td>
+         </tr>
+    </tbody>
+</table>
+<div class="row col-md-12">
+    <h3>
+        Add New Article
+    </h3>
+    <form>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label>Title</label>		
+                <input class="form-control" ng-model="article.title"></input>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label>URL</label>
+                <input class="form-control" ng-model="article.URL"></input>
+            </div>
+        </div>
+        <input type="hidden" ng-model="article.user" value="Admin">
+        <input type="button" class="btn btn-success" value="Add" ng-click="add()"></input>	     
+    </form>
+</div>
+<br />
+<br />
+</div>

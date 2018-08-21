@@ -1,0 +1,52 @@
+
+<div class="container">
+    <h1><a href="{{article.URL}}">{{article.title}}</a></h1>
+    <h3 style="width: 35%; text-align: left;" >Number of article votes: {{article.votes}}</h3>
+    <a class="btn btn-primary pull-right" href="/#/">Back</a>   
+    <br />
+    <br />
+    <table class="table table-bordered table-striped sortable">
+        <thead>
+            <tr>
+                <th scope="col" class="col-md-1">Manage</th>
+                <th scope="col" class="col-md-1">#</th>
+                <th scope="col" class="col-md-4">Comments</th>
+                <th scope="col" class="col-md-1">User</th>
+                <th scope="col" class="col-md-2">Date</th>
+                <th scope="col" class="col-md-1">Comment Votes</th>
+                <th scope="col" class="col-md-1"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat='comment in article.comments'>
+                <td>
+                    <a class="btn btn-default glyphicon glyphicon-thumbs-up" ng-click="upVoteComment(comment.commentid, comment.votes)"></a>
+                    <a class="btn btn-default glyphicon glyphicon-thumbs-down" ng-click="downVoteComment(comment.commentid, comment.votes)"></a>
+                </td>
+                <td>{{comment.commentid}}</td>
+                <td>{{comment.body}}</td>
+                <td>{{comment.user}}</td>
+                <td>{{comment.date}}</td>
+                <td>{{comment.votes}}</td>
+                <td>
+                    <button class="btn btn-default glyphicon glyphicon-trash" ng-click="deleteComment(comment.commentid)"></button>
+                </td>
+            </tr>
+        </tbody>
+     </table>
+     <div class="row col-md-12">
+            <h3>
+                Add New Comments
+            </h3>
+            <form>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label>Title</label>		
+                        <textarea class="form-control" ng-model="comment.body"></textarea>
+                    </div>
+                </div>
+                <input type="hidden" ng-model="article.user" value="Admin">
+                <input type="button" class="btn btn-success" value="Add" ng-click="addComment()"></input>	     
+            </form>
+    </div>
+</div>
